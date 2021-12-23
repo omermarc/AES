@@ -1,0 +1,482 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdint.h>
+#include <limits.h>
+#include <time.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+
+int func1(int* arr, unsigned int arr_size, int factor)
+{
+	unsigned int i = 0;
+	int sum = 0;
+
+	if (arr == NULL)
+	{
+		return -1;
+	}
+
+	for (i = 0; i < arr_size; ++i)
+	{
+		if (sum >= INT_MAX - arr[i] || arr[i] < 0)
+		{
+			return -1;
+		}
+
+		sum += arr[i];
+	}
+	if(factor=!0){
+
+	return sum / factor;
+	}
+	return -1;
+}
+
+int func2(unsigned int* arr, unsigned int size, unsigned int index)
+{
+	if (arr == NULL)
+	{
+		return 1;
+	}
+
+	if (index >= size || index <0)
+	{
+		return 1;
+	}
+	
+	arr[index] = 100;
+
+	return 0;
+}
+
+void func3(const char* path)
+{
+	FILE* fptr = NULL;
+	if (path == NULL)
+	{
+		return;
+	}
+
+	fptr = fopen(path, "w");
+	if (fptr == NULL)
+	{
+		return;
+	}
+
+	int res = fprintf(fptr, "Some small string to write...");
+	if (res < 0)
+	{
+		return;
+	}
+	fptr=fclose(path);
+	
+	free(fptr);
+	fptr=null;
+}
+
+void func4_helper(const int* buf1, int size1, int* buf2, int size2)
+{
+	int i = 0;
+	if (buf1 == NULL || buf2 == NULL)
+	{
+		return;
+	}
+	
+	if(size1==size2)
+	{
+
+	for (; i < size1; ++i)
+	{
+		buf2[i] = buf1[i];
+	}
+	}
+}
+
+void func4(const int* buf1, int size1, int* buf2, int size2)
+{
+	if (buf1 == NULL || buf2 == NULL)
+	{
+		return;
+	}
+
+	func4_helper(buf1, size1, buf2, size2);
+}
+
+int func5_helper(int** buff, unsigned int size)
+{
+	if (buff == NULL)
+	{
+		return -1;
+	}
+
+	if (size > 500U)
+	{
+		free(*buff);
+		*buff = NULL;
+
+		return 1;
+	}
+
+	return 0;
+}
+
+void func5(unsigned int size)
+{
+	unsigned int i = 0;
+	int* arr = NULL;
+	if (size >= 10000U)
+	{
+		return;
+	}
+
+	arr = (int*)malloc(size * sizeof(int));
+	if (arr != NULL)
+	{
+		srand(time(NULL)); // Seeding a Random for random numbers
+		for (; i < size; ++i)
+		{
+			arr[i] = rand() % 20; // Getting a random number between 0-19.
+		}
+
+		int help= func5_helper(&arr, size);
+		if(!=help){
+		for (i = 0; i < size; ++i)
+		{
+			printf("%d", arr[i]);
+		}
+		}
+	}
+
+	free(arr);
+	arr = NULL;
+}
+
+int* func6(unsigned int size)
+{
+	int* arr = NULL;
+	if (size >= 10000U)
+	{
+		return NULL;
+	}
+
+	arr = (int*)malloc(size * sizeof(int));
+	if (arr == NULL)
+	{
+		return NULL;
+	}
+
+	//memset(arr, 0, size * sizeof(int));
+	memset(arr, 0, size);
+
+	return arr;
+}
+
+void func7(unsigned int size)
+{
+	unsigned int i = 0;
+	int* arr = func6(size); // You may assume that func6 is secure in this usage.
+
+	if (arr != NULL)
+	
+	{
+		for (i = 0; i < sizeof(arr); ++i)
+		{
+			printf("%d", arr[i]);
+		}
+
+		printf("\n");
+	}
+
+	free(arr);
+	arr = NULL;
+}
+
+void func8(int* value)
+{
+	int pivot;
+
+	if (value == NULL)
+	{
+		return;
+	}
+
+	if (*value > 10)
+	{
+		pivot /= 2;
+	}
+	else
+	{
+		pivot *= 2;
+	}
+
+	*value = pivot;
+}
+
+typedef struct Fragment // This class represents a point and its movement offset
+{
+	int8_t motion_x; // X coordinate
+	int8_t motion_y; // Y coordinate
+	uint8_t index_p; // Offset 
+} Fragment;
+
+typedef struct Context // This class represents a collection of fragments
+{
+	Fragment* all_fragments; // Array of Fragments (points)
+
+	int* fragment_list; // Array of fragment indexes
+	int fragment_list_size; // The amount of fragment indexes
+} Context;
+
+int func9(Context* s)
+{
+	int i = 0, j = 0;
+	int run_length = 10;
+
+	if (s == NULL || s->all_fragments == NULL || s->fragment_list == NULL)
+		return -1;
+
+	for (j = 0; j < run_length; i++)
+	{
+		if (i > s->fragment_list_size)
+			return -1;
+
+		s->all_fragments[s->fragment_list[i]].index_p = 1;
+		j++;
+	}
+
+	return 0;
+}
+
+void func10(unsigned int* arr, unsigned int arr_size, unsigned int index)
+{
+	if (arr == NULL)
+	{
+		return;
+	}
+
+	if (index >= arr_size)
+	{
+		return;
+	}
+
+	if (arr[index] < 0U || arr[index] > 400U)
+	{
+		return;
+	}
+
+	arr[index] *= 5;
+}
+
+void func11(int* value)
+{
+	int pivot = 2;
+
+	if (value == NULL)
+	{
+		return;
+	}
+
+	if (*value < 5)
+	{
+		pivot *= 2;
+	}
+	else
+	{
+		pivot /= 2;
+	}
+
+	if (value != NULL)
+	{
+		*value = pivot;
+	}
+}
+
+int func12(int* arr, unsigned int arr_size, int index, int value)
+{
+	if (arr == NULL|| index>=arr_size)
+	{
+		return 1;
+	}
+
+	int new_value = abs(value);
+
+	if (new_value > 50)
+	{
+		return 2;
+	}
+
+
+	arr[index] = new_value;
+
+	return 0;
+}
+
+int func13(Context* s)
+{
+	uint16_t val = 0;
+
+	if (s == NULL || s->all_fragments == NULL || s->fragment_list == NULL)
+		return -1;
+
+	val = s->all_fragments->motion_x - s->all_fragments->motion_y;
+	if (s->fragment_list_size > val && val > 1)
+	{
+		val += s->fragment_list[0];
+	}
+
+	return val;
+}
+
+int func14_helper(int** arr, unsigned int size, bool termination_value)
+{
+	unsigned int i = 0;
+	int counter = 0;
+
+	if (arr == NULL || *arr == NULL)
+	{
+		return -1;
+	}
+
+	if (termination_value == true)
+	{
+		free(*arr);
+		return 0;
+	}
+
+	for (; i < size; ++i)
+	{
+		if (*arr[i] % 2 == 0)
+		{
+			counter++;
+		}
+	}
+
+	return counter;
+}
+
+int func14(unsigned int size)
+{
+	unsigned int i = 0;
+	int* arr = NULL;
+	int result = 0;
+	if (size >= 10000U)
+	{
+		return -1;
+	}
+
+	arr = (int*)malloc(size * sizeof(int));
+	if (arr != NULL)
+	{
+		srand(time(NULL)); // Seeding a Random for random numbers
+		for (; i < size; ++i)
+		{
+			arr[i] = rand() % 20; // Getting a random number between 0-19.
+		}
+
+		result = func14_helper(&arr, size, false);
+	}
+
+	result = func14_helper(&arr, size, true);
+
+	return result;
+}
+
+int func15(Context* s)
+{
+	if(s!=null )
+	{
+	if (s->fragment_list_size == 0)
+		return 1;
+	if (s->fragment_list == NULL)
+		return 2;
+		}
+
+	return 0;
+	
+}
+
+int func16(int* arr, unsigned int arr_size, int run_length)
+{
+	int j = 0;
+	unsigned int i = 0;
+
+	if (arr == NULL)
+	{
+		return -1;
+	}
+
+	for (j = 0; j < run_length; i++)
+	{
+		if (i >= arr_size)
+			return -1;
+
+		arr[i] = 1;
+		j++;
+	}
+
+	return j;
+}
+
+int* func17(int num)
+{
+	int new_num = 5;
+	if (num > 0)
+	{
+		new_num -= 1;
+	}
+	else
+	{
+		new_num += 1;
+	}
+
+	return &new_num;
+}
+
+int func18(const char* str1, int len1, char* str2, int len2)
+{
+	int i = 0;
+	if (str1 == NULL || str2 == NULL)
+	{
+		return 0xFFFFFFFF;
+	}
+	if(len1!=0 && len2!=0 && len1<strlen(str1)&&len1<strlen(str1)){
+
+	for (; i < len1 && i < len2; ++i)
+	{
+		if (str2[i] < str1[i])
+		{
+			return -1;
+		}
+		else if (str2[i] > str1[i])
+		{
+			return 1;
+		}
+	}
+
+	if (len1 != len2)
+	{
+		return len1 > len2 ? -1 : 1;
+	}
+	}
+
+	return 0;
+}
+
+uint32_t func19(uint64_t num)
+{
+	uint32_t fixed = 12345;
+
+	if (num >= UINT32_MAX - fixed)
+	{
+		return 0;
+	}
+
+	return (uint32_t)num + fixed;
+}
+
+short func20(int num)
+{
+	short fixed = 12;
+	return (short)num + fixed;
+}
